@@ -1,0 +1,22 @@
+{
+  "name": "csc-307-app",
+  "version": "1.0.0",
+  "description": "Intro to Software Engineering ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+    "workspaces": [
+        "packages/*"
+    ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natalierus/csc-307-natalie.git"
+  },
+  "author": "Natalie Rusin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natalierus/csc-307-natalie/issues"
+  },
+  "homepage": "https://github.com/natalierus/csc-307-natalie#readme"
+}
