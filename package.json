@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-    "workspaces": [
-        "packages/*"
-    ],
+  "workspaces": [
+    "packages/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/natalierus/csc-307-natalie.git"
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/natalierus/csc-307-natalie/issues"
   },
-  "homepage": "https://github.com/natalierus/csc-307-natalie#readme"
+  "homepage": "https://github.com/natalierus/csc-307-natalie#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }
