@@ -44,6 +44,17 @@ const findUserByName = (name) => {
 const findUserById = (id) =>
   users["users_list"].find((user) => user["id"] === id);
 
+const addUser = (user) => {
+  users["users_list"].push(user);
+  return user;
+};
+
+app.post("/users", (req, res) => {
+  const userToAdd = req.body;   // expects JSON: { id, name, job }
+  addUser(userToAdd);
+  res.send();                   // assignment’s simple version (200 OK, empty body)
+});
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
