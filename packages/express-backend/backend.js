@@ -1,44 +1,35 @@
 // backend.js
 import express from "express";
+import cors from "cors";
 
 const app = express();
 const port = 8000;
 const users = {
   users_list: [
-    {
-      id: "xyz789",
-      name: "Charlie",
-      job: "Janitor"
-    },
-    {
-      id: "abc123",
-      name: "Mac",
-      job: "Bouncer"
-    },
-    {
-      id: "ppp222",
-      name: "Mac",
-      job: "Professor"
-    },
-    {
-      id: "yat999",
-      name: "Dee",
-      job: "Aspring actress"
-    },
-    {
-      id: "zap555",
-      name: "Dennnynynyny",
-      job: "Bartender"
-    }
+    { name: "Charlie",        job: "Janitor",          id: "xyz789" },
+    { name: "Mac",            job: "Bouncer",          id: "abc123" },
+    { name: "Mac",            job: "Professor",        id: "ppp222" },
+    { name: "Dee",            job: "Aspring actress",  id: "yat999" },
+    { name: "Dennnynynyny",   job: "Bartender",        id: "zap555" }
   ]
 };
 
 app.use(express.json());
+app.use(cors());
+
+// simple id generator (short, random)
+const genId = () => Math.random().toString(36).slice(2, 8);
 
 const findUserByName = (name) => {
-  return users["users_list"].filter(
-    (user) => user["name"] === name
-  );
+  return users["users_list"].filter((user) => user["name"] === name);
+};
+
+// helper: delete by id
+const deleteUserById = (id) => {
+  const idx = users.users_list.findIndex((u) => u.id === id);
+  if (idx === -1) return false;
+  users.users_list.splice(idx, 1);
+  return true;
 };
 
 const findUserById = (id) =>
@@ -48,11 +39,21 @@ const addUser = (user) => {
   users["users_list"].push(user);
   return user;
 };
+// DELETE /users/:id
+app.delete("/users/:id", (req, res) => {
+  const { id } = req.params;
+  const deleted = deleteUserById(id);
+  if (!deleted) return res.status(404).send("Resource not found.");
+  return res.status(204).send(); // no content on success
+});
 
 app.post("/users", (req, res) => {
-  const userToAdd = req.body;   // expects JSON: { id, name, job }
-  addUser(userToAdd);
-  res.send();                   // assignment’s simple version (200 OK, empty body)
+  const userToAdd = req.body;   // expects JSON: { id?, name, job }
+  if (!userToAdd.id) {
+    userToAdd.id = genId();     // auto-generate id if missing
+  }
+  const created = addUser(userToAdd);
+  res.status(201).json(created);  // <-- 201 Created + return the created object
 });
 
 app.get("/", (req, res) => {
@@ -81,7 +82,5 @@ app.get("/users/:id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(
-    `Example app listening at http://localhost:${port}`
-  );
+  console.log(`Example app listening at http://localhost:${port}`);
 });
