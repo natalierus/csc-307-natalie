@@ -21,5 +21,9 @@
   "homepage": "https://github.com/natalierus/csc-307-natalie#readme",
   "devDependencies": {
     "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "mongoose": "^8.19.1"
   }
 }
