@@ -14,7 +14,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// GET /users with optional filters: name, job, or both
 app.get("/users", (req, res) => {
   const { name, job } = req.query;
 
@@ -33,14 +32,13 @@ app.get("/users", (req, res) => {
    .catch(err => res.status(500).json({ error: err.message }));
 });
 
-// (Already supported by your assignment)
 app.get("/users/:id", (req, res) => {
   getUserById(req.params.id)
     .then(doc => doc ? res.json(doc) : res.status(404).json({ error: "Not found" }))
     .catch(err => res.status(400).json({ error: err.message }));
 });
 
-// Delete
+
 app.delete("/users/:id", (req, res) => {
   const { id } = req.params;
 
@@ -50,7 +48,6 @@ app.delete("/users/:id", (req, res) => {
       return res.json({ deleted: true, id: doc._id });
     })
     .catch(err => {
-      // e.g. CastError for invalid ObjectId format
       res.status(400).json({ error: err.message });
     });
 });
@@ -61,7 +58,7 @@ const PORT = process.env.PORT || 3000;
 connectDB()
   .then(() => {
     app.listen(PORT, () =>
-      console.log(`🚀 API running at http://localhost:${PORT}`)
+      console.log(`API running at http://localhost:${PORT}`)
     );
   })
   .catch((err) => {

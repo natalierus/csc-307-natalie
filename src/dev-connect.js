@@ -2,7 +2,7 @@ import { connectDB } from "./db.js";
 
 connectDB()
   .then(() => {
-    console.log("🎉 MongoDB connection test successful!");
+    console.log(" MongoDB connection test successful!");
     process.exit(0);
   })
   .catch((err) => {
