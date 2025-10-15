@@ -22,7 +22,6 @@ const genId = () => Math.random().toString(36).slice(2, 8);
 
 app.get("/", (_req, res) => res.send("Hello World!"));
 
-// GET
 app.get("/users", (req, res) => {
   const { name } = req.query;
   if (name) {
@@ -32,7 +31,6 @@ app.get("/users", (req, res) => {
   res.json(users);
 });
 
-// GET
 app.get("/users/:id", (req, res) => {
   const user = users.users_list.find((u) => u.id === req.params.id);
   return user ? res.json(user) : res.status(404).send("Resource not found.");
