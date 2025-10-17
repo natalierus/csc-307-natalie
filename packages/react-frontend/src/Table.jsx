@@ -16,7 +16,7 @@ const TableBody = ({ characterData, removeCharacter }) => (
   <tbody>
     {characterData.map((row, index) => (
       <tr key={row.id ?? index}>
-        <td>{row.id}</td>
+        <td>{row._id}</td>
         <td>{row.name}</td>
         <td>{row.job}</td>
         <td>

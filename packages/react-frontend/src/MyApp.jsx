@@ -7,7 +7,7 @@ function MyApp() {
   const [characters, setCharacters] = useState([]);
 
   function fetchUsers() {
-    return fetch("http://localhost:3000/users").then((r) => r.json());
+    return fetch("http://localhost:3000").then((r) => r.json());
   }
 
   function postUser(person) {
@@ -28,7 +28,8 @@ function MyApp() {
     const user = characters[index];
     if (!user) return;
 
-    fetch(`http://localhost:3000/users/${user.id}`, { method: "DELETE" }).then(
+    const id = user._id;
+    fetch(`http://localhost:3000/users/${id}`, { method: "DELETE" }).then(
       () => setCharacters((prev) => prev.filter((_, i) => i !== index))
     );
   }
