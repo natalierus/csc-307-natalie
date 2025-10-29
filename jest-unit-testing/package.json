@@ -1,0 +1,27 @@
+{
+  "name": "jest-unit-testing",
+  "version": "1.0.0",
+  "description": "ia5",
+  "main": "module.js",
+  "type": "module",
+  "scripts": {
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "jest": {
+    "transform": {}
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natalierus/csc-307-natalie.git"
+  },
+  "author": "Natalie Rusin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natalierus/csc-307-natalie/issues"
+  },
+  "homepage": "https://github.com/natalierus/csc-307-natalie#readme",
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "jest": "^30.2.0"
+  }
+}
